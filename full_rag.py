@@ -40,7 +40,7 @@ def retrieve(query_embedding):
         score = cosine_similarity(query_embedding, document)
         scores.append((score, documents))
     scores.sort(reverse=True)
-    return scores[0]
+    return  scores[0] 
 
 
 
