@@ -34,6 +34,14 @@ document_embeddings = model.encode(documents)
 def cosine_similarity(a,b):
     return np.dot(a, b) / (np.linalg.norm(a) * np.linalg.norm(b))
 
+def retrieve(query_embedding):
+    scores = []
+    for i, document in document_embeddings:
+        score = cosine_similarity(query_embedding, document)
+        scores.append((score, documents))
+    scores.sort(reverse=True)
+    return scores[0]
+
 
 
 
