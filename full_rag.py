@@ -14,7 +14,7 @@ if not my_api_key:
     raise ValueError("GROQ_API_KEY environment variable is not set.")
 
 client = Groq(api_key=my_api_key)
-model = "llama-3.3-70b-versatile"
+groqmodel = "llama-3.3-70b-versatile"
 
 documents = [
     "Employees receive 24 days of paid leave per year.",
@@ -43,8 +43,7 @@ def retrieve(query_embedding):
     return  scores[0] 
 
 
-def ask_llm(question):
-    context=retrieve_info(question)
+def ask_llm(question,context):
     sys_prompt=f"""answer in one line only. Answer only based on this context. do not hallucinate. Context: {context}"""
     system_message = {
         "role": "system",
@@ -55,12 +54,14 @@ def ask_llm(question):
         "content": question
     }
     messages = [system_message, message]
-    response = client.chat.completions.create(model=model, messages=messages)
+    response = client.chat.completions.create(model=groqmodel, messages=messages)
     answer = response.choices[0].message.content
     return answer
 
 query = "How much vacation do I get?"
 query_embedding = model.encode(query)
 score, context = retrieve(query_embedding)
-print(f"Score: {score}, Context: {context}")
+# print(f"Score: {score}, Context: {context}")
 
+answer = ask_llm(query, context)
+print(f"Answer: {answer}")
