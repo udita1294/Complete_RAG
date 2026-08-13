@@ -36,9 +36,9 @@ def cosine_similarity(a,b):
 
 def retrieve(query_embedding):
     scores = []
-    for i, document in document_embeddings:
+    for i, document in enumerate(document_embeddings):
         score = cosine_similarity(query_embedding, document)
-        scores.append((score, documents))
+        scores.append((score, documents[i]))
     scores.sort(reverse=True)
     return  scores[0] 
 
@@ -47,4 +47,6 @@ def retrieve(query_embedding):
 
 query = "How much vacation do I get?"
 query_embedding = model.encode(query)
+score, context = retrieve(query_embedding)
+print(f"Score: {score}, Context: {context}")
 
