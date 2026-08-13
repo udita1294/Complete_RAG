@@ -43,7 +43,21 @@ def retrieve(query_embedding):
     return  scores[0] 
 
 
-
+def ask_llm(question):
+    context=retrieve_info(question)
+    sys_prompt=f"""answer in one line only. Answer only based on this context. do not hallucinate. Context: {context}"""
+    system_message = {
+        "role": "system",
+        "content": sys_prompt
+    }
+    message = {
+        "role": "user",
+        "content": question
+    }
+    messages = [system_message, message]
+    response = client.chat.completions.create(model=model, messages=messages)
+    answer = response.choices[0].message.content
+    return answer
 
 query = "How much vacation do I get?"
 query_embedding = model.encode(query)
