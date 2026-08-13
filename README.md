@@ -177,15 +177,6 @@ This approach is useful for applications such as:
 * Documentation assistants
 * FAQ systems
 
-## Limitations
-
-* Documents are currently hardcoded in the Python file.
-* Only the single highest-scoring document is retrieved.
-* There is no vector database.
-* No document chunking is implemented.
-* The system does not currently use a similarity threshold.
-* The application is currently command-line based.
-
 ## Learning Outcome
 
 This project demonstrates the fundamentals of a **Retrieval-Augmented Generation pipeline**, including:
@@ -201,9 +192,5 @@ Context Retrieval
    ↓
 LLM Generation
 ```
-
-It provides a simple foundation for building more advanced RAG applications using vector databases and production-grade retrieval systems.
-
-## License
 
 This project is for educational and demonstration purposes.
