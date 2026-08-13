@@ -192,5 +192,3 @@ Context Retrieval
    ↓
 LLM Generation
 ```
-
-This project is for educational and demonstration purposes.
